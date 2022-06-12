@@ -22,6 +22,7 @@
 						<h1 v-text="product.title"></h1>
 						<p v-html="product.description"></p>
 						<p class="price">{{product.price | formatPrice}}</p>
+						<button class="default" v-on:click="addToCart">Add to cart</button>
 					</div>
 				</div>
 			</main>
@@ -42,6 +43,11 @@
 						image: "/assets/images/product-fullsize.png",
 					},
 					cart: [],
+				},
+				methods: {
+					addToCart: function () {
+						this.cart.push(this.product.id);
+					},
 				},
 				filters: {
 					formatPrice(price) {
