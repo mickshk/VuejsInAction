@@ -53,7 +53,117 @@
 							</button>
 						</div>
 					</div>
-					<div v-else></div>
+					<div v-else>
+						<div class="form-group">
+							<div class="col-md-6">
+								<strong>First Name:</strong>
+								<input
+									title="First Name"
+									v-model.trim="order.firstName"
+									class="form-control"
+								/>
+							</div>
+							<div class="col-md-6">
+								<strong>Last Name:</strong>
+								<input
+									title="Last Name"
+									v-model.trim="order.lastName"
+									class="form-control"
+								/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12"><strong>Address:</strong></div>
+							<div class="col-md-12">
+								<input
+									title="Address"
+									v-model="order.address"
+									class="form-control"
+								/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12"><strong>City:</strong></div>
+							<div class="col-md-12">
+								<input title="City" v-model="order.city" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-2">
+								<strong>State:</strong>
+								<select
+									title="State"
+									v-model="order.state"
+									class="form-control"
+								>
+									<option disabled value="">State</option>
+									<option>AL</option>
+									<option>AR</option>
+									<option>CA</option>
+									<option>NV</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-4">
+								<strong>Zip / Postal Code:</strong>
+								<input title="Zip" v-model="order.zip" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 boxes">
+								<input
+									type="checkbox"
+									id="gift"
+									value="true"
+									v-model="order.gift"
+								/>
+								<label for="gift">Ship As Gift?</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6 boxes">
+								<input
+									type="radio"
+									id="home"
+									value="Home"
+									v-model="order.method"
+								/>
+								<label for="home">Home</label>
+								<input
+									type="radio"
+									id="business"
+									value="Business"
+									v-model="order.method"
+								/>
+								<label for="business">Business</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-6">
+								<button
+									type="submit"
+									class="btn btn-primary submit"
+									v-on:click="submitForm"
+								>
+									Place Order
+								</button>
+								//#A
+							</div>
+						</div>
+						<div class="col-md-12 verify">
+							<pre>
+								First Name: {{order.firstName}}
+								Last Name: {{order.lastName}}
+								Address: {{order.address}}
+								City: {{order.city}}
+								Zip: {{order.zip}}
+								State: {{order.state}}
+								Method: {{order.method}}
+								Gift: {{order.gift}}
+							</pre>
+						</div>
+					</div>
 				</div>
 			</main>
 		</div>
@@ -64,6 +174,16 @@
 				data: {
 					sitename: "Vue.js Pet Depot",
 					showProduct: true,
+					order: {
+						firstName: "",
+						lastName: "",
+						address: "",
+						city: "",
+						zip: "",
+						state: "",
+						method: "Home",
+						gift: false,
+					},
 					product: {
 						id: 1001,
 						title: "Cat Food, 25lb bag",
